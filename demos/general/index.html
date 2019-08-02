@@ -12,17 +12,17 @@
 
     <meta name="apple-mobile-web-app-title" content="Add to Home">
 
-    <link rel="shortcut icon" sizes="16x16" href="../../imgs/icon-16x16.png">
-    <link rel="shortcut icon" sizes="196x196" href="../imgs/icon-196x196.png">
-    <link rel="apple-touch-icon-precomposed" href="../imgs/icon-152x152.png">
+    <link rel="shortcut icon" sizes="16x16" href="https://edinhorod.github.io/add-home-screen/demos/imgs/icon-16x16.png">
+    <link rel="shortcut icon" sizes="196x196" href="https://edinhorod.github.io/add-home-screen/demos/imgs/icon-196x196.png">
+    <link rel="apple-touch-icon-precomposed" href="https://edinhorod.github.io/add-home-screen/demos/imgs/icon-152x152.png">
 
     <link rel="stylesheet" type="text/css" href="https://edinhorod.github.io/add-home-screen/styles/bootstrap.min.css">
 
-    <link rel="stylesheet" type="text/css" href="../styles/addtohomescreen.css">
-    <link rel="stylesheet" type="text/css" href="../styles/animate.css">
+    <link rel="stylesheet" type="text/css" href="https://edinhorod.github.io/add-home-screen/styles/addtohomescreen.css">
+    <link rel="stylesheet" type="text/css" href="https://edinhorod.github.io/add-home-screen/styles/animate.css">
 
     <meta name="theme-color" content="#fff">
-    <link href="../demos/manifest.json" rel="manifest">
+    <link href="https://edinhorod.github.io/add-home-screen/demos/manifest.json" rel="manifest">
 
 </head>
 
@@ -42,7 +42,7 @@
     <div class="ath-container banner-bottom-center">
         <div class="ath-banner">
             <div class="ath-banner-cell ath-banner-cell-md">
-                <img src="../demos/imgs/pwa-logo-50x50.png" alt="PWA" class="ath-prompt-logo">
+                <img src="https://edinhorod.github.io/add-home-screen/demos/imgs/pwa-logo-50x50.png" alt="PWA" class="ath-prompt-logo">
             </div>
             <div class="ath-banner-cell">
                 <button class="btn btn-cancel btn-link">Not Now</button>
@@ -56,8 +56,8 @@
         </div>
     </div>
 
-    <script src="../demos/js/custom_console.js"></script>
-    <script src="../demos/js/addtohomescreen.js"></script>
+    <script src="https://edinhorod.github.io/add-home-screen/demos/js/custom_console.js"></script>
+    <script src="https://edinhorod.github.io/add-home-screen/demos/js/addtohomescreen.js"></script>
     <script>
         var ath = addToHomescreen( {
             autostart: true,
@@ -101,10 +101,23 @@
 
         }
 
-        if ( "serviceWorker" in navigator ) {
+        // if ( "serviceWorker" in navigator ) {
 
-            navigator.serviceWorker.register( "/sw.js" );
+        //     navigator.serviceWorker.register( "/sw.js" );
 
+        // }
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+                    console.log('Worker registration successful', registration.scope);
+                }, function (err) {
+                    console.log('Worker registration failed', err);
+                }).catch(function (err) {
+                    console.log(err);
+                });
+            });
+        } else {
+            console.log('Service Worker is not supported by browser.');
         }
     </script>
 </body>
