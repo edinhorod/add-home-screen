@@ -15,7 +15,7 @@ setInterval(function() {
 
 if('serviceWorker' in navigator) {
   navigator.serviceWorker
-           .register('/sw.js')
+           .register('add-home-screen/sw.js')
            .then(function() { console.log('Service Worker Registered'); });
 }
 
